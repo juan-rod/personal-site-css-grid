@@ -225,10 +225,14 @@ body {
     .container .main__content__headshot {
       height: 100%;
       width: 100%;
-      grid-column: 2 / span 3;
+      grid-column: 1 / span 3;
       grid-row: 1/ -1;
       display: flex;
-      align-items: flex-end; }
+      align-items: flex-end;
+      background-image: url(../images/juan_rodriguez--2019.png);
+      background-repeat: no-repeat;
+      background-color: #ef80a1;
+      background-blend-mode: saturation; }
       .container .main__content__headshot img {
         width: 70%; }
     .container .main__content__title {
@@ -282,6 +286,31 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+  .container .page-count {
+    grid-column: 1;
+    grid-row: 3; }
+    .container .page-count .page-count-line {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 20px; }
+      .container .page-count .page-count-line:hover span, .container .page-count .page-count-line:active span, .container .page-count .page-count-line:visited span {
+        width: 50%; }
+      .container .page-count .page-count-line:hover p, .container .page-count .page-count-line:active p, .container .page-count .page-count-line:visited p {
+        opacity: 1; }
+      .container .page-count .page-count-line p {
+        opacity: 0;
+        transition: all 500ms ease; }
+      .container .page-count .page-count-line span {
+        width: 20%;
+        height: 2px;
+        background: black;
+        margin-right: 10px;
+        transition: all 500ms ease; }
+    .container .page-count .active span {
+      width: 50%; }
+    .container .page-count .active p {
+      opacity: 1; }
   .container .footer {
     height: 100%;
     width: 100%;
@@ -290,47 +319,13 @@ body {
     display: grid;
     grid-template-columns: 9% 9% 20% 10% 16% 21% 9% 6%;
     grid-template-rows: repeat(1, 1fr); }
+    .container .footer .footer-arrows {
+      position: relative;
+      padding: 10% 0 0; }
     .container .footer .horizontal-arrows {
       grid-column: 2; }
     .container .footer .vertical-arrows {
-      grid-column: 6;
-      position: relative;
-      padding: 10% 0 0; }
-      .container .footer .vertical-arrows--up {
-        left: 0;
-        top: 30px;
-        transform: rotate(-45deg); }
-      .container .footer .vertical-arrows--down {
-        left: 20%;
-        top: 20px;
-        transform: rotate(135deg); }
-      .container .footer .vertical-arrows--up, .container .footer .vertical-arrows--down {
-        width: 1.2em;
-        height: 1.2em;
-        box-sizing: border-box;
-        position: absolute; }
-        .container .footer .vertical-arrows--up::before, .container .footer .vertical-arrows--down::before {
-          content: '';
-          width: 100%;
-          height: 100%;
-          border-width: .4vmin .4vmin 0 0;
-          border-style: solid;
-          border-color: rgba(88, 88, 91, 0.33);
-          transition: .2s ease;
-          display: block;
-          transform-origin: 100% 0; }
-        .container .footer .vertical-arrows--up:after, .container .footer .vertical-arrows--down:after {
-          content: '';
-          float: left;
-          position: relative;
-          top: -100%;
-          width: 100%;
-          height: 100%;
-          border-width: 0 .4vmin 0 0;
-          border-style: solid;
-          border-color: rgba(88, 88, 91, 0.33);
-          transform-origin: 100% 0;
-          transition: .2s ease; }
+      grid-column: 6; }
     .container .footer .page-item-count {
       grid-column: 8;
       display: flex;
