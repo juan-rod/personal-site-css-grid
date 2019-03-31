@@ -1,6 +1,5 @@
 import Router from './router';
 import linkClicks from './eventListeners.js'
-import {template} from './home.js'
 
 // const baconEl = document.querySelector('.bacon');
 // GetBacon()

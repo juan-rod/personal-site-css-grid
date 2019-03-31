@@ -1,10 +1,6 @@
-  export const pageNavLinks = document.querySelectorAll('.horizontal-arrow')
-  export const sideNavCount = document.querySelectorAll('.page-count-line')
-  window.addEventListener('hashchange', hashChanged )
-  pageNavLinks.forEach(nav => {
-    console.log('nav', nav)
-    nav.addEventListener('click', (e) => changeAttribute(e))
-  })
+  export const pageNav = document.querySelectorAll('.horizontal-arrow')
+  export const subNav = document.querySelectorAll('.vertical-arrow')
+  export const pageCount = document.querySelectorAll('.page-count-line')
   let routesRight = {
     '/': 'projects',
     '/projects': 'timeline',
@@ -17,7 +13,15 @@
     '/timeline': 'projects',
     '/contact': 'timeline'
   }
-  function changeAttribute (e) {
+  pageNav.forEach(nav => {
+    console.log('nav', nav)
+    nav.addEventListener('click', (e) => changeNavAttribute(e))
+  })
+  subNav.forEach(nav => {
+    console.log('nav', nav)
+    nav.addEventListener('click', (e) => changeSubNavAttribute(e))
+  })
+  function changeNavAttribute (e) {
     let element = e.target
     let url = location.hash.slice(1) || '/'
     if(element.classList.contains('right')) {
@@ -28,26 +32,21 @@
   }
   function hashChanged () {
     let url = location.hash.slice(1) || '/'
-   console.log('hashChanged', url)
-   // need to change page-count
-   sideNavCount.forEach(sideNav =>{
-     let sidenavClasses = sideNav.classList
-     let sidenavAttribute = sideNav.getAttribute('href')
-     console.log('sidenavClasses' , sidenavClasses)
-     console.log('sidenavAttribute', sidenavAttribute)
-    //  console.log('sideNav', sideNav.classList)
-    removePrevActiveClass(sidenavClasses)
-     if (sidenavAttribute === `#${url}`) {
-       sidenavClasses.add('active')
-     }
-   })
- }
-  // function pageNavClick (e) {
-  //   removePrevActiveClass()
-  //   let element = e.target
-  //   element.classList.add('active')
-  // }
-  function removePrevActiveClass (sidenavClasses) {
-    // sidenavClasses.contains('active')
-      if (sidenavClasses.contains('active')) sidenavClasses.remove('active')
+    pageCount.forEach(sideNav =>{
+      let sidenavClasses = sideNav.classList
+      let sidenavAttribute = sideNav.getAttribute('href')
+      removePrevActiveClass(sidenavClasses)
+      if (sidenavAttribute === `#${url}`) {
+        sidenavClasses.add('active')
+      }
+    })
   }
+  function removePrevActiveClass (sidenavClasses) {
+    if (sidenavClasses.contains('active')) sidenavClasses.remove('active')
+  }
+  
+  function setWindowHistory (pathName) {
+    window.history.pushState({}, pathName, window.location.origin +'/public/index.html#' + pathName);
+  }
+  
+  window.addEventListener('hashchange', hashChanged)

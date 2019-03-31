@@ -90,23 +90,11 @@
 /*!***************************************!*\
   !*** ./src/scripts/eventListeners.js ***!
   \***************************************/
-/*! exports provided: pageNavLinks, sideNavCount */
+/*! exports provided: pageNav, subNav, pageCount */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pageNavLinks\", function() { return pageNavLinks; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"sideNavCount\", function() { return sideNavCount; });\nvar pageNavLinks = document.querySelectorAll('.horizontal-arrow');\nvar sideNavCount = document.querySelectorAll('.page-count-line');\nwindow.addEventListener('hashchange', hashChanged);\npageNavLinks.forEach(function (nav) {\n  console.log('nav', nav);\n  nav.addEventListener('click', function (e) {\n    return changeAttribute(e);\n  });\n});\nvar routesRight = {\n  '/': 'projects',\n  '/projects': 'timeline',\n  '/timeline': 'contact',\n  '/contact': ''\n};\nvar routesLeft = {\n  '/': 'contact',\n  '/projects': '',\n  '/timeline': 'projects',\n  '/contact': 'timeline'\n};\n\nfunction changeAttribute(e) {\n  var element = e.target;\n  var url = location.hash.slice(1) || '/';\n\n  if (element.classList.contains('right')) {\n    element.setAttribute('href', \"#/\".concat(routesRight[url]));\n  } else {\n    element.setAttribute('href', \"#/\".concat(routesLeft[url]));\n  }\n}\n\nfunction hashChanged() {\n  var url = location.hash.slice(1) || '/';\n  console.log('hashChanged', url); // need to change page-count\n\n  sideNavCount.forEach(function (sideNav) {\n    var sidenavClasses = sideNav.classList;\n    var sidenavAttribute = sideNav.getAttribute('href');\n    console.log('sidenavClasses', sidenavClasses);\n    console.log('sidenavAttribute', sidenavAttribute); //  console.log('sideNav', sideNav.classList)\n\n    removePrevActiveClass(sidenavClasses);\n\n    if (sidenavAttribute === \"#\".concat(url)) {\n      sidenavClasses.add('active');\n    }\n  });\n} // function pageNavClick (e) {\n//   removePrevActiveClass()\n//   let element = e.target\n//   element.classList.add('active')\n// }\n\n\nfunction removePrevActiveClass(sidenavClasses) {\n  // sidenavClasses.contains('active')\n  if (sidenavClasses.contains('active')) sidenavClasses.remove('active');\n}\n\n//# sourceURL=webpack:///./src/scripts/eventListeners.js?");
-
-/***/ }),
-
-/***/ "./src/scripts/home.js":
-/*!*****************************!*\
-  !*** ./src/scripts/home.js ***!
-  \*****************************/
-/*! exports provided: template */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"template\", function() { return template; });\nvar homeTemplate = function homeTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Software',\n    title2: 'Developer',\n    date: 'may 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\nvar projectsTemplate = function projectsTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Project',\n    title2: '1',\n    date: 'april 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\nvar timelineTemplate = function timelineTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Timeline',\n    title2: 'timeline',\n    date: 'january 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\nvar contactTemplate = function contactTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'contact',\n    title2: 'contact',\n    date: 'dec 2019'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\nfunction template(templateId) {\n  console.log('templateId in home', templateId);\n\n  switch (templateId) {\n    case 'home':\n      return homeTemplate();\n\n    case 'projects':\n      return projectsTemplate();\n\n    case 'timeline':\n      return timelineTemplate();\n\n    case 'contact':\n      return contactTemplate();\n  } // switch (column.varType) {\n  //   case 'dropdown': return dropdownColumnDef(column)\n  //   case 'string': return stringColumnDef(column)\n  //   case 'numeric': return defaultColumnDef(column)\n  //   case 'checkbox': return checkboxColumnDef(column)\n  //   case 'attachment': return attachmentColumnDef(column)\n  //   case 'location': return containerColumnDef(column)\n  //   case 'date': return dateColumnDef(column)\n  //   case 'link': return linkColumnDef(column)\n  //   case 'taskfile': return taskColumnDef(column)\n  //   case 'pipeline_instance_uuid': return pipelineColumnDef(column)\n  //   case 'itemqtyadj': return itemQtyAdjustmentColumnDef(column)\n  //   case 'barcode': return barcodeColumnDef(column)\n  //   default: return defaultColumnDef(column)\n  // }\n\n}\n\n//# sourceURL=webpack:///./src/scripts/home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pageNav\", function() { return pageNav; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"subNav\", function() { return subNav; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pageCount\", function() { return pageCount; });\nvar pageNav = document.querySelectorAll('.horizontal-arrow');\nvar subNav = document.querySelectorAll('.vertical-arrow');\nvar pageCount = document.querySelectorAll('.page-count-line');\nvar routesRight = {\n  '/': 'projects',\n  '/projects': 'timeline',\n  '/timeline': 'contact',\n  '/contact': ''\n};\nvar routesLeft = {\n  '/': 'contact',\n  '/projects': '',\n  '/timeline': 'projects',\n  '/contact': 'timeline'\n};\npageNav.forEach(function (nav) {\n  console.log('nav', nav);\n  nav.addEventListener('click', function (e) {\n    return changeNavAttribute(e);\n  });\n});\nsubNav.forEach(function (nav) {\n  console.log('nav', nav);\n  nav.addEventListener('click', function (e) {\n    return changeSubNavAttribute(e);\n  });\n});\n\nfunction changeNavAttribute(e) {\n  var element = e.target;\n  var url = location.hash.slice(1) || '/';\n\n  if (element.classList.contains('right')) {\n    element.setAttribute('href', \"#/\".concat(routesRight[url]));\n  } else {\n    element.setAttribute('href', \"#/\".concat(routesLeft[url]));\n  }\n}\n\nfunction hashChanged() {\n  var url = location.hash.slice(1) || '/';\n  pageCount.forEach(function (sideNav) {\n    var sidenavClasses = sideNav.classList;\n    var sidenavAttribute = sideNav.getAttribute('href');\n    removePrevActiveClass(sidenavClasses);\n\n    if (sidenavAttribute === \"#\".concat(url)) {\n      sidenavClasses.add('active');\n    }\n  });\n}\n\nfunction removePrevActiveClass(sidenavClasses) {\n  if (sidenavClasses.contains('active')) sidenavClasses.remove('active');\n}\n\nfunction setWindowHistory(pathName) {\n  window.history.pushState({}, pathName, window.location.origin + '/public/index.html#' + pathName);\n}\n\nwindow.addEventListener('hashchange', hashChanged);\n\n//# sourceURL=webpack:///./src/scripts/eventListeners.js?");
 
 /***/ }),
 
@@ -118,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ \"./src/scripts/router.js\");\n/* harmony import */ var _eventListeners_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventListeners.js */ \"./src/scripts/eventListeners.js\");\n/* harmony import */ var _home_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.js */ \"./src/scripts/home.js\");\n\n\n // const baconEl = document.querySelector('.bacon');\n// GetBacon()\n//   .then(res => {\n//     const markup = res.reduce((acc, val) => (acc += `<p>${val}</p>`), '');\n//     baconEl.innerHTML = markup;\n//   }).catch(err => (baconEl.innerHTML = err));\n// function pageClick(e) {\n//   console.log('hey')\n//   console.log('pageClick', e)\n// }\n// window.onclick = pageClick\n\n//# sourceURL=webpack:///./src/scripts/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ \"./src/scripts/router.js\");\n/* harmony import */ var _eventListeners_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./eventListeners.js */ \"./src/scripts/eventListeners.js\");\n\n // const baconEl = document.querySelector('.bacon');\n// GetBacon()\n//   .then(res => {\n//     const markup = res.reduce((acc, val) => (acc += `<p>${val}</p>`), '');\n//     baconEl.innerHTML = markup;\n//   }).catch(err => (baconEl.innerHTML = err));\n// function pageClick(e) {\n//   console.log('hey')\n//   console.log('pageClick', e)\n// }\n// window.onclick = pageClick\n\n//# sourceURL=webpack:///./src/scripts/main.js?");
 
 /***/ }),
 
@@ -130,7 +118,79 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _rou
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home */ \"./src/scripts/home.js\");\n\nvar routes = {\n  '/': Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('home'),\n  '/projects': Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('projects'),\n  '/timeline': Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('timeline'),\n  '/contact': Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('contact')\n};\nvar el = null;\n\nfunction router() {\n  // Lazy load view element:\n  el = el || document.getElementById('view'); // Current route url (getting rid of '#' in hash as well):\n\n  var url = location.hash.slice(1) || '/'; // Get route by url:\n\n  var route = routes[url]; // Do we have both a view and a route?\n\n  if (el && route) {\n    // Render route template with John Resig's template engine:\n    el.innerHTML = routes[url];\n  }\n} // Listen on hash change:\n\n\nwindow.addEventListener('hashchange', router); // Listen on page load:\n\nwindow.addEventListener('load', router);\n\n//# sourceURL=webpack:///./src/scripts/router.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _templates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./templates */ \"./src/scripts/templates/index.js\");\n\nvar routes = {\n  '/': Object(_templates__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('home'),\n  '/projects': Object(_templates__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('projects'),\n  '/timeline': Object(_templates__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('timeline'),\n  '/contact': Object(_templates__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('contact')\n};\nvar el = null;\nvar elLogo = null;\n\nfunction router() {\n  // Lazy load view element:\n  el = el || document.getElementById('view');\n  elLogo = elLogo || document.getElementById('logo');\n  elLogo.innerHTML = Object(_templates__WEBPACK_IMPORTED_MODULE_0__[\"template\"])('logo'); // Current route url (getting rid of '#' in hash as well):\n\n  var url = location.hash.slice(1) || '/'; // Get route by url:\n\n  var route = routes[url]; // Do we have both a view and a route?\n\n  if (el && route) {\n    window.history.pushState({}, url, window.location.origin + '/public/index.html#' + url); // Render route template with John Resig's template engine:\n\n    el.innerHTML = routes[url];\n  }\n} // Listen on hash change:\n\n\nwindow.addEventListener('hashchange', router); // Listen on page load:\n\nwindow.addEventListener('load', router);\n\n//# sourceURL=webpack:///./src/scripts/router.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/contact.js":
+/*!******************************************!*\
+  !*** ./src/scripts/templates/contact.js ***!
+  \******************************************/
+/*! exports provided: contactTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"contactTemplate\", function() { return contactTemplate; });\nvar contactTemplate = function contactTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'contact',\n    title2: 'contact',\n    date: 'dec 2019'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\n//# sourceURL=webpack:///./src/scripts/templates/contact.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/home.js":
+/*!***************************************!*\
+  !*** ./src/scripts/templates/home.js ***!
+  \***************************************/
+/*! exports provided: homeTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"homeTemplate\", function() { return homeTemplate; });\nvar homeTemplate = function homeTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Software',\n    title2: 'Developer',\n    date: 'may 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\n//# sourceURL=webpack:///./src/scripts/templates/home.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/index.js":
+/*!****************************************!*\
+  !*** ./src/scripts/templates/index.js ***!
+  \****************************************/
+/*! exports provided: template */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"template\", function() { return template; });\n/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home */ \"./src/scripts/templates/home.js\");\n/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./projects */ \"./src/scripts/templates/projects.js\");\n/* harmony import */ var _timeline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timeline */ \"./src/scripts/templates/timeline.js\");\n/* harmony import */ var _contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contact */ \"./src/scripts/templates/contact.js\");\n/* harmony import */ var _logo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./logo */ \"./src/scripts/templates/logo.js\");\n\n\n\n\n // import { pageCountTemplate } from './page-count'\n\nfunction template(templateId) {\n  console.log('templateId in home', templateId);\n\n  switch (templateId) {\n    case 'home':\n      return Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"homeTemplate\"])();\n\n    case 'projects':\n      return Object(_projects__WEBPACK_IMPORTED_MODULE_1__[\"projectsTemplate\"])();\n\n    case 'timeline':\n      return Object(_timeline__WEBPACK_IMPORTED_MODULE_2__[\"timelineTemplate\"])();\n\n    case 'contact':\n      return Object(_contact__WEBPACK_IMPORTED_MODULE_3__[\"contactTemplate\"])();\n\n    case 'logo':\n      return Object(_logo__WEBPACK_IMPORTED_MODULE_4__[\"logoTemplate\"])();\n    // case 'page-count' : return pageCountTemplate()\n\n    default:\n      return Object(_home__WEBPACK_IMPORTED_MODULE_0__[\"homeTemplate\"])();\n  }\n}\n\n//# sourceURL=webpack:///./src/scripts/templates/index.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/logo.js":
+/*!***************************************!*\
+  !*** ./src/scripts/templates/logo.js ***!
+  \***************************************/
+/*! exports provided: logoTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"logoTemplate\", function() { return logoTemplate; });\nvar logoTemplate = function logoTemplate() {\n  return \"<svg width=\\\"100%\\\" height=\\\"100%\\\" viewBox=\\\"0 0 47 10\\\" version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" xmlns:xlink=\\\"http://www.w3.org/1999/xlink\\\">\\n    <desc>Created with Sketch.</desc>\\n    <defs></defs>\\n    <g id=\\\"Page-1\\\" stroke=\\\"none\\\" stroke-width=\\\"1\\\" fill=\\\"none\\\" fill-rule=\\\"evenodd\\\" font-family=\\\"RobotoMono-Regular, Roboto Mono\\\" font-size=\\\"11\\\" font-weight=\\\"normal\\\" letter-spacing=\\\"0.1358024\\\">\\n        <g id=\\\"Desktop\\\" transform=\\\"translate(-324.000000, -211.000000)\\\" fill=\\\"#4A4A4A\\\">\\n            <text id=\\\"JUANROD\\\">\\n                <tspan x=\\\"323.920932\\\" y=\\\"220\\\">JUANROD</tspan>\\n            </text>\\n        </g>\\n    </g>\\n  </svg>\";\n};\n\n//# sourceURL=webpack:///./src/scripts/templates/logo.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/projects.js":
+/*!*******************************************!*\
+  !*** ./src/scripts/templates/projects.js ***!
+  \*******************************************/
+/*! exports provided: projectsTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"projectsTemplate\", function() { return projectsTemplate; });\nvar projectsTemplate = function projectsTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Project',\n    title2: '1',\n    date: 'april 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\n//# sourceURL=webpack:///./src/scripts/templates/projects.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/templates/timeline.js":
+/*!*******************************************!*\
+  !*** ./src/scripts/templates/timeline.js ***!
+  \*******************************************/
+/*! exports provided: timelineTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"timelineTemplate\", function() { return timelineTemplate; });\nvar timelineTemplate = function timelineTemplate() {\n  var template = {\n    img: './assets/images/juan_rodriguez--2019.png',\n    title1: 'Timeline',\n    title2: 'timeline',\n    date: 'january 2016'\n  };\n  return \"<div class=\\\"main__content__headshot\\\"></div>\\n  <div class=\\\"main__content__title\\\">\\n  <span>\".concat(template.title1, \"</span> \\n  <span>\").concat(template.title2, \"</span>\\n  <span class=\\\"title-description\\\">\\n    <span></span>\\n    <span></span>\\n    <span>\").concat(template.date, \"</span>\\n  </span>\\n</div>\");\n};\n\n//# sourceURL=webpack:///./src/scripts/templates/timeline.js?");
 
 /***/ }),
 
