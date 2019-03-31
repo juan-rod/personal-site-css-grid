@@ -1,8 +1,8 @@
-import { homeTemplate } from './home'
-import { projectsTemplate } from './projects'
-import { timelineTemplate } from './timeline'
-import { contactTemplate } from './contact'
-import { logoTemplate } from './logo'
+import { homeTemplate } from './pages/Home'
+import { projectsTemplate } from './pages/Projects'
+import { timelineTemplate } from './pages/Timeline'
+import { contactTemplate } from './pages/Contact'
+import { logoTemplate } from './components/Logo'
 // import { pageCountTemplate } from './page-count'
 
 export function template (templateId) {
