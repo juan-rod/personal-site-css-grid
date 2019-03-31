@@ -1,19 +1,40 @@
-let template = {
-  img: './assets/images/juan_rodriguez--2019.png',
-  title1: 'Project',
-  title2: '1',
-  date: 'april 2016'
+import Utils from '../../services/Utils'
+
+let template = [
+  {
+    img: './assets/images/juan_rodriguez--2019.png',
+    title1: 'Project',
+    title2: '1',
+    date: 'april 2016'
+  },
+  {
+    img: './assets/images/juan_rodriguez--2019.png',
+    title1: 'New Project',
+    title2: '2',
+    date: 'april 2016'
+  },
+  {
+    img: './assets/images/juan_rodriguez--2019.png',
+    title1: 'Super Neww',
+    title2: '3',
+    date: 'april 2016'
+  }
+]
+function getTemplate() {
+  let request = Utils.parseRequestURL()
+  return template[request.id]
 }
 let Projects = {
   render : async () => {
+    console.log('hello from render')
       let view =  `<div class="main__content__headshot"></div>
         <div class="main__content__title">
-        <span>${template.title1}</span> 
-        <span>${template.title2}</span>
+        <span>${getTemplate().title1}</span> 
+        <span>${getTemplate().title2}</span>
         <span class="title-description">
           <span></span>
           <span></span>
-          <span>${template.date}</span>
+          <span>${getTemplate().date}</span>
         </span>
       </div>`
       return view

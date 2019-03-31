@@ -7,6 +7,7 @@ let template = {
 
 let Home = {
   render: async () => {
+    console.log('hello from HOME render')
       let view =  `<div class="main__content__headshot"></div>
         <div class="main__content__title">
         <span>${template.title1}</span> 
