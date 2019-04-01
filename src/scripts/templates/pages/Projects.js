@@ -1,4 +1,5 @@
 import Utils from '../../services/Utils'
+import Events from '../../services/Events'
 
 let template = [
   {
@@ -27,7 +28,7 @@ function getTemplate() {
 let Projects = {
   render : async () => {
     console.log('hello from render')
-      let view =  `<div class="main__content__headshot"></div>
+      let view =  `<div class="main__content__image main__content__project"></div>
         <div class="main__content__title">
         <span>${getTemplate().title1}</span> 
         <span>${getTemplate().title2}</span>
@@ -39,7 +40,16 @@ let Projects = {
       </div>`
       return view
   },
-  after_render: async () => {}
+  after_render: async () => {
+    // let request = Utils.parseRequestURL()
+    // console.log('request', request)
+    // console.log('(request.id < 0)', (request.id < 0))
+    // if (request.id < 0) {
+    //   Events.addAnimation.subTitleUp()
+    // } else {
+      Events.addAnimation.title()
+    // }
+  }
       
 }
 

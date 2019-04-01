@@ -34,16 +34,6 @@ $title-container-w: 449.25px;
       align-content: center;
     }
   }
-  // #view {
-  //   border: 1px solid red;
-  //   grid-column: 3;
-  //   grid-row: 1;
-  // }
-  // .nav-links {
-  //   border: 1px solid green;
-  //   grid-column: 4;
-  //   grid-row: 1;
-  // }
   .main__content {
     // background: blue;
     height: 100%;
@@ -54,7 +44,7 @@ $title-container-w: 449.25px;
     grid-template-columns: 27% 12% 22% 27% 12%;
     grid-template-rows: repeat(3, 1fr); 
     // need to figure out nested grids issue
-    &__headshot {
+    &__image {
       height: 100%;
       width: 100%;
       // background: green;
@@ -62,13 +52,17 @@ $title-container-w: 449.25px;
       grid-row: 1/ -1;
       display: flex;
       align-items: flex-end;
+
+    }
+    &__headshot {
       background-image: url('../../public/assets/images/juan_rodriguez--2019.png');
       background-repeat: no-repeat;
       background-color: #ef80a1;
       background-blend-mode: saturation;
-      img {
-        width: 70%;
-      }
+    }
+    &__project {
+      background-image: url('../../public/assets/images/classroom.jpg');
+      background-repeat: no-repeat;
     }
     &__title {
       height: 100%;
@@ -82,12 +76,14 @@ $title-container-w: 449.25px;
       font-size: 4.2rem;
       @include flexColumnStartEnd;
       justify-content: flex-end;
+      visibility: hidden;
       span:nth-child(1) {
         letter-spacing: .08em;
       }
       span {
         display: block;
         width: $title-container-w;
+        // visibility: hidden;
       }
       .title-description {
         @include flexRowSpaceBetween;
@@ -198,6 +194,9 @@ $title-container-w: 449.25px;
       // align-items: center;
       padding: 30% 0 0;
       // @extend %txt--heading;
+      // visibility: hidden;
+      // animation: fadeIn 500ms ease-in;
+      // transition: animation 500ms ease;
     }
 
   }
