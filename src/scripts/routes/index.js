@@ -18,7 +18,7 @@ const routes = {
 }
 
 const router = async () => {
-
+console.log('router')
   // Lazy load view element:
   const logo = null || document.getElementById('logo')
   const view = null || document.getElementById('view')
@@ -33,10 +33,11 @@ const router = async () => {
 
   // Get the parsed URl from the addressbar
   let request = Utils.parseRequestURL()
+
   
   // Parse the URL and if it has an id part, change it with the string ":id"
-  let parsedURL = (request.resource ? ('/' + request.resource) : '/') 
-
+  let parsedURL = ((request.resource) ? ('/' + request.resource) : '') 
+  
   parsedURL = parsedURL + ((request.id === 0 ||request.id) ? '/:id' : '')
   parsedURL = parsedURL + (request.verb ? ('/' + request.verb) : '')
   // to fix home url issue

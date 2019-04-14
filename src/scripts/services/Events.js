@@ -22,6 +22,7 @@ const subRoutes = {
 
 let Events = {
   changeNavAttribute (e) {
+    console.log('changeNav',)
     let element = e.target
     let request = Utils.parseRequestURL()
 
@@ -32,20 +33,27 @@ let Events = {
     }
   },
   changeSubNavAttribute (e) {
-      let element = e.target
-      let request = Utils.parseRequestURL()
-      let subRoute
-
-      if(element.classList.contains('up')) {
-        subRoute = (request.id >= subRoutes[request.resource]) ? 0 : request.id + 1
-        element.setAttribute('href', `#/${request.resource}/${subRoute}`)
-        Events.addAnimation.subTitleUp()
-      } else {
-        subRoute = ((request.id <= subRoutes[request.resource]) && request.id !== 0) ? request.id - 1 : 2
-        element.setAttribute('href', `#/${request.resource}/${subRoute}`)
-      }
-    },
-    setActiveClass: async () => {
+    console.log('changeSub',)
+    let element = e.target
+    let request = Utils.parseRequestURL()
+    // console.log('request.id', request.id)
+    let subRoute
+    // console.log('element & classList', element, element.classList)
+    if (request.id < 1 && request.resource === '/') {
+      // console.log('request.id < 1',request.id < 1 )
+      element.removeAttribute('href')
+    } else if(element.classList.contains('up')) {
+      subRoute = (request.id >= subRoutes[request.resource]) ? 0 : request.id + 1
+      // console.log('changeSubNavAttribute contains up', subRoute)
+      element.setAttribute('href', `#/${request.resource}/${subRoute}`)
+      Events.addAnimation.subTitleUp()
+    } else {
+      subRoute = ((request.id <= subRoutes[request.resource]) && request.id !== 0) ? request.id - 1 : 2
+      // console.log('changeSubNavAttribute does not contains up', subRoute)
+      element.setAttribute('href', `#/${request.resource}/${subRoute}`)
+    }
+  },
+  setActiveClass: async () => {
     let request = Utils.parseRequestURL()
     let sidenavClasses
     let sidenavAttribute
@@ -64,23 +72,20 @@ let Events = {
   removeActiveClass: async (classes) => {
     if (classes.contains('active')) classes.remove('active')
   },
+  removeAnimation: {
+    removeClass () {
+      const pageHeader = document.querySelectorAll('.main__content__title')
+      pageHeader[0].classList.remove('slideLeft')
+    }
+  },
   addAnimation: {
     title () {
       const pageHeader = document.querySelectorAll('.main__content__title')
-      // console.log('addAnimation title', pageHeader)
       pageHeader[0].classList.add('slideLeft')
     },
     subTitleUp () {
       const pageHeader = document.querySelectorAll('.main__content__title')
-      // const pageCount = document.querySelectorAll('.page-item-count')
-      // console.log('subtitleUp', pageHeader)
-      // console.log('pageHeader[0].classList.contains', pageHeader[0].classList.contains('slideLeft'))
-      // if (pageHeader[0].classList.contains('slideLeft')) pageHeader[0].classList.remove('slideLeft')
-      // pageCount[0].classList.remove('fadeIn')
-      // pageCount[0].classList.add('fadeIn')
       pageHeader[0].classList.add('slideRight')
-      // console.log('AFTER subtitleUp', pageHeader)
-      // pageHeader[0].classList.add('slideExpandUp')
     }
   }
 }

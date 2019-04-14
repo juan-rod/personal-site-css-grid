@@ -41,14 +41,15 @@ let Projects = {
       return view
   },
   after_render: async () => {
-    // let request = Utils.parseRequestURL()
-    // console.log('request', request)
-    // console.log('(request.id < 0)', (request.id < 0))
-    // if (request.id < 0) {
-    //   Events.addAnimation.subTitleUp()
-    // } else {
+    let request = Utils.parseRequestURL()
+    console.log('request.id', request.id)
+    console.log('request.id < 0', request.id < 0)
+    if (request.id < 0) {
+      // Events.removeAnimation.removeClass()
+      Events.addAnimation.subTitleUp()
+    } else {
       Events.addAnimation.title()
-    // }
+    }
   }
       
 }

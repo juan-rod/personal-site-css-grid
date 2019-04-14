@@ -1,4 +1,5 @@
 import Events from '../../services/Events'
+import Utils from '../../services/Utils'
 let template = {
   img: './assets/images/juan_rodriguez--2019.png',
   title1: 'Software',
@@ -22,7 +23,17 @@ let Home = {
       return view
   },
   after_render: async () => {
-    Events.addAnimation.title()
+    // Events.addAnimation.title()
+    let request = Utils.parseRequestURL()
+    console.log('request', request)
+    console.log('(request.id < 0)', (request.id < 0))
+    if (request.id < 0) {
+      console.log('subtitle')
+      Events.addAnimation.subTitleUp()
+    } else {
+      console.log('title')
+      Events.addAnimation.title()
+    }
   }
       
 }
