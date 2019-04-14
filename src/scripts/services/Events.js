@@ -46,7 +46,8 @@ let Events = {
       subRoute = (request.id >= subRoutes[request.resource]) ? 0 : request.id + 1
       // console.log('changeSubNavAttribute contains up', subRoute)
       element.setAttribute('href', `#/${request.resource}/${subRoute}`)
-      Events.addAnimation.subTitleUp()
+      // Events.removeAnimation.removeClass()
+      // Events.addAnimation.subTitleUp()
     } else {
       subRoute = ((request.id <= subRoutes[request.resource]) && request.id !== 0) ? request.id - 1 : 2
       // console.log('changeSubNavAttribute does not contains up', subRoute)
@@ -85,7 +86,7 @@ let Events = {
     },
     subTitleUp () {
       const pageHeader = document.querySelectorAll('.main__content__title')
-      pageHeader[0].classList.add('slideRight')
+      pageHeader[0].classList.add('slideUp')
     }
   }
 }
