@@ -1021,7 +1021,8 @@ body {
       background-blend-mode: saturation; }
     .container .main__content__project {
       background-image: url(../images/classroom.jpg);
-      background-repeat: no-repeat; }
+      background-repeat: no-repeat;
+      background-size: cover; }
     .container .main__content__title {
       height: 100%;
       width: 100%;

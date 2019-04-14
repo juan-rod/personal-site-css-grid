@@ -63,6 +63,7 @@ $title-container-w: 449.25px;
     &__project {
       background-image: url('../../public/assets/images/classroom.jpg');
       background-repeat: no-repeat;
+      background-size: cover;
     }
     &__title {
       height: 100%;
